@@ -1,26 +1,52 @@
 const notes = require("express").Router();
-const {
-  readAndAppend,
-  readFromFile,
-  writeToFile,
-} = require("./helpers/fsUtils.js");
+const fs = require("fs");
+const path = require("path");
 
 notes.get("/", (req, res) => {
-  //reads from db.json
-  readFromFile("./db/feedback.json").then((data) => res.json(JSON.parse(data)));
+  // reads from db.json
+  fs.readFile("./db/db.json", "utf-8", (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(JSON.parse(data));
+    }
+  });
 });
 
 notes.post("/", (req, res) => {
-  //reads and appends new tip and returns notes
-  fs.readFile("./db/db.json", "utf8", (err, data) => {
+  let newNote = "";
+  console.log(req.body);
+  fs.readFile("./db/db.json", "utf-8", (err, data) => {
     if (err) {
-      console.error(err);
+      console.log(err);
     } else {
-      const parsedData = JSON.parse(data);
-      parsedData.push(content);
-      writeToFile("./db/db.json", parsedData);
+      newNote = JSON.parse(data);
+
+      // add req.body to the saved content
+      const { title, text } = req.body;
+      if (req.body) {
+        const completeNote = {
+          title,
+          text,
+          id: Math.floor(Math.random() * 1000),
+        };
+        newNote.push(completeNote);
+        console.log(newNote);
+      }
+
+      // override old file
+      fs.writeFile("./db/db.json", JSON.stringify(newNote), (err) => {
+        if (err) {
+          console.error(err);
+        }
+        res.json(newNote);
+        // file written successfully
+      });
     }
   });
+
+  //   read the file
+  // save the contents of the file into a variable
 });
 
 module.exports = notes;

@@ -1,6 +1,1 @@
-[
-    {
-        "title":"Test Title",
-        "text":"Test text"
-    }
-]
+[{"title":"Test Title","text":"Test text","id":"1"},{"title":"New Note","text":"New text","id":"2"},{"title":"extra note","text":"more notes","id":"3"},{"title":"Another note","text":"here","id":"4"},{"title":"The Vacuum","text":"is in the corner","id":338}]
