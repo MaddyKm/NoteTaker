@@ -22,6 +22,7 @@ Node must be installed, as well as express if you'd like to run this on your loc
 ## Usage
 
 Follow the link to initiate the application. Click on any saved note to display on the right.
+![Alt text](<Screenshot 2023-09-22 at 8.46.47 PM.png>)
 
 ## License
 
