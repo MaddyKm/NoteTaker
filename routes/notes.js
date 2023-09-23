@@ -4,7 +4,7 @@ const path = require("path");
 
 notes.get("/", (req, res) => {
   // reads from db.json
-  fs.readFile("./db/db.json", "utf-8", (err, data) => {
+  fs.readFile("./db.json", "utf-8", (err, data) => {
     if (err) {
       console.log(err);
     } else {
@@ -16,7 +16,7 @@ notes.get("/", (req, res) => {
 notes.post("/", (req, res) => {
   let newNote = "";
   console.log(req.body);
-  fs.readFile("./db/db.json", "utf-8", (err, data) => {
+  fs.readFile("./db.json", "utf-8", (err, data) => {
     if (err) {
       console.log(err);
     } else {
@@ -37,7 +37,7 @@ notes.post("/", (req, res) => {
       }
 
       // override old file
-      fs.writeFile("./db/db.json", JSON.stringify(newNote), (err) => {
+      fs.writeFile("./db.json", JSON.stringify(newNote), (err) => {
         if (err) {
           console.error(err);
         }
