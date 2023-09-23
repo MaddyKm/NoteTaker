@@ -24,11 +24,13 @@ notes.post("/", (req, res) => {
 
       // add req.body to the saved content
       const { title, text } = req.body;
+      const randomID = Math.floor(Math.random() * 1000);
+      const stringID = randomID.toString();
       if (req.body) {
         const completeNote = {
           title,
           text,
-          id: Math.floor(Math.random() * 1000),
+          id: stringID,
         };
         newNote.push(completeNote);
         console.log(newNote);
